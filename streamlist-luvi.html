@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Luvi 💛</title>
+
+<style>
+:root{
+ --bg:#ffdde8;
+ --text:#222;
+ --btn:#ff6ea3;
+}
+
+body{
+ background:linear-gradient(120deg,var(--bg),#fff);
+ font-family:Verdana, sans-serif;
+ margin:0;
+ padding:0;
+ overflow-x:hidden;
+}
+
+.wrapper{
+ text-align:center;
+ padding:50px 10px;
+}
+
+h1{
+ font-size:45px;
+ color:#ff3b8d;
+}
+
+#subtitle{
+ font-size:18px;
+ color:#444;
+ margin-top:-5px;
+ margin-bottom:25px;
+}
+
+button{
+ background:var(--btn);
+ border:none;
+ padding:12px 22px;
+ border-radius:10px;
+ font-size:16px;
+ color:white;
+ cursor:pointer;
+ transition:.2s;
+ margin:7px;
+}
+button:hover{
+ filter:brightness(1.15);
+}
+
+/* popup modal */
+#modal{
+ position:fixed;
+ left:0;top:0;
+ width:100%;height:100%;
+ background:rgba(0,0,0,.6);
+ display:flex;justify-content:center;align-items:center;
+ visibility:hidden;
+}
+#modal.active{visibility:visible;}
+
+.box{
+ background:white;
+ padding:25px;
+ border-radius:15px;
+ text-align:center;
+ width:300px;
+}
+
+/*** mini game ***/
+#game{
+ position:fixed;
+ left:50%;
+ top:50%;
+ transform:translate(-50%,-50%);
+ background:white;
+ padding:25px;
+ border-radius:15px;
+ text-align:center;
+ display:none;
+ width:300px;
+ box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.small{
+ padding:8px 16px;
+ font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+ <h1>Luvi Hana Margareta 💛</h1>
+ <div id="subtitle">Hehe bercanda ya, nanti aku traktir es krim 😜</div>
+
+ <button onclick="showModal()">Mode Kamu Lucu 😘</button>
+ <button onclick="subtitle.textContent='Aku sayang kamu 💛'">Mode Sayang</button>
+ <button onclick="subtitle.textContent='Hehe bercanda ya, nanti aku traktir es krim 😜'">Reset</button>
+ <button onclick="openGame()">Main Mini Game 🎮</button>
+</div>
+
+<!-- modal -->
+<div id="modal">
+ <div class="box">
+  <h2>Cuma Mau Bilang</h2>
+  <p>Tenang, ini bercandaaa 🤭 Jangan marah ya, kamu lucu banget kalo ketawa!</p>
+  <button onclick="closeModal()">Ok hehe</button>
+ </div>
+</div>
+
+<!-- mini game -->
+<div id="game">
+ <h3>Tebak Ekspresi Luvi 😁</h3>
+ <p>Menurut kamu, ekspresi Luvi sekarang apa?</p>
+ <button class="small" onclick="guess('senyum')">😊 Senyum</button>
+ <button class="small" onclick="guess('cemberut')">😒 Cemberut</button>
+ <button class="small" onclick="guess('ketawa')">🤣 Ketawa</button>
+ <div id="result" style="margin-top:10px;font-weight:600"></div>
+ <button class="small" onclick="closeGame()">Tutup</button>
+</div>
+
+<script>
+const subtitle=document.getElementById('subtitle');
+const modal=document.getElementById('modal');
+
+function showModal(){
+ modal.classList.add('active');
+}
+function closeModal(){
+ modal.classList.remove('active');
+}
+
+// mini game
+function openGame(){
+ document.getElementById('game').style.display='block';
+}
+function closeGame(){
+ document.getElementById('game').style.display='none';
+}
+
+// hadiah lucu
+function guess(ans){
+ const responses={
+   senyum:"Yaa pasti senyum dong 😁 + bonus pelukan virtual 🤗",
+   cemberut:"Cemberut? hmm harus dipeluk nih 😘 (level +1 sayang)",
+   ketawa:"Iyaaa kamu pasti ketawa 🤣 dapet sticker bintang ⭐"
+ };
+ document.getElementById('result').textContent=responses[ans];
+}
+
+// buka game pakai keyboard G
+document.addEventListener('keydown',e=>{
+ if(e.key.toLowerCase()==='g') openGame();
+});
+</script>
+
+</body>
+</html>
